@@ -2,4 +2,26 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- The Hive: honey/amber palette -->
+    <color name="hive_primary">#B26A00</color>
+    <color name="hive_on_primary">#FFFFFF</color>
+    <color name="hive_primary_container">#FFDDB0</color>
+    <color name="hive_on_primary_container">#3A2300</color>
+
+    <color name="hive_secondary">#6B5D4B</color>
+    <color name="hive_on_secondary">#FFFFFF</color>
+    <color name="hive_secondary_container">#F3E0CB</color>
+    <color name="hive_on_secondary_container">#241A0C</color>
+
+    <color name="hive_background">#FFFBF7</color>
+    <color name="hive_on_background">#1F1B16</color>
+    <color name="hive_surface">#FFFBF7</color>
+    <color name="hive_on_surface">#1F1B16</color>
+    <color name="hive_error">#BA1A1A</color>
+    <color name="hive_on_error">#FFFFFF</color>
+
+    <!-- Status colours (available / taken badges) -->
+    <color name="status_available">#2E7D32</color>
+    <color name="status_taken">#C62828</color>
 </resources>
