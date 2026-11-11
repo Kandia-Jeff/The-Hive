@@ -1,7 +1,23 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.TheHive" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-    </style>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="hive_primary">#FFB95C</color>
+    <color name="hive_on_primary">#472A00</color>
+    <color name="hive_primary_container">#653E00</color>
+    <color name="hive_on_primary_container">#FFDDB0</color>
+
+    <color name="hive_secondary">#D7C3AE</color>
+    <color name="hive_on_secondary">#3B2F20</color>
+    <color name="hive_secondary_container">#53452F</color>
+    <color name="hive_on_secondary_container">#F3E0CB</color>
+
+    <color name="hive_background">#17130D</color>
+    <color name="hive_on_background">#EBE1D9</color>
+    <color name="hive_surface">#17130D</color>
+    <color name="hive_on_surface">#EBE1D9</color>
+
+    <color name="hive_error">#FFB4AB</color>
+    <color name="hive_on_error">#690005</color>
+
+    <color name="status_available">#81C784</color>
+    <color name="status_taken">#EF9A9A</color>
 </resources>
