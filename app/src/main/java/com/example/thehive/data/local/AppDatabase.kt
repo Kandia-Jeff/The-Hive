@@ -31,7 +31,7 @@ abstract class AppDatabase : RoomDatabase() {
                 INSTANCE ?: Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "property_app.db"
+                    "thehive.db"
                 ).build().also { INSTANCE = it }
             }
     }
