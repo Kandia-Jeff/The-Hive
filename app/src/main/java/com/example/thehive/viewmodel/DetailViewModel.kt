@@ -3,8 +3,10 @@ package com.example.thehive.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thehive.data.local.entity.ListingEntity
+import com.example.thehive.data.local.entity.UserEntity
 import com.example.thehive.data.repository.FavouriteRepository
 import com.example.thehive.data.repository.ListingRepository
+import com.example.thehive.data.repository.UserRepository
 import com.example.thehive.util.SessionManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,6 +16,7 @@ import kotlinx.coroutines.launch
 class DetailViewModel(
     private val listingRepository: ListingRepository,
     private val favouriteRepository: FavouriteRepository,
+    private val userRepository: UserRepository,
     private val sessionManager: SessionManager
 ) : ViewModel() {
 
@@ -30,6 +33,23 @@ class DetailViewModel(
 
     val favouriteState: StateFlow<UiState<Boolean>> =
         _favouriteState.asStateFlow()
+
+    // Current logged-in user
+    private val _currentUserState = MutableStateFlow<UserEntity?>(null)
+    val currentUserState: StateFlow<UserEntity?> = _currentUserState.asStateFlow()
+
+    init {
+        loadCurrentUser()
+    }
+
+    private fun loadCurrentUser() {
+        viewModelScope.launch {
+            val userId = sessionManager.getUserId()
+            if (userId != SessionManager.NO_USER) {
+                _currentUserState.value = userRepository.findById(userId)
+            }
+        }
+    }
 
     // Load a single listing
     fun loadListing(listingId: Long) {

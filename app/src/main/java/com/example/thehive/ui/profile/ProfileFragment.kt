@@ -19,6 +19,7 @@ import com.example.thehive.ui.common.showMessage
 import com.example.thehive.viewmodel.ProfileViewModel
 import com.example.thehive.viewmodel.UiState
 import com.example.thehive.viewmodel.ViewModelFactory
+import com.example.thehive.worker.ReminderScheduler
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 
@@ -48,7 +49,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             } ?: showMessage("User profile not loaded")
         }
 
+        binding.btnSettings.setOnClickListener {
+            findNavController().navigate(R.id.action_profile_to_settings)
+        }
+
         binding.btnLogout.setOnClickListener {
+            ReminderScheduler.cancelReminder(requireContext())
             viewModel.logout()
             findNavController().navigate(R.id.action_profile_to_login)
         }
