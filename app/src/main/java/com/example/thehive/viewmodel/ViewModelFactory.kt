@@ -28,6 +28,7 @@ class ViewModelFactory(
                 DetailViewModel(
                     listingRepository,
                     favouriteRepository,
+                    userRepository,
                     sessionManager
                 ) as T
 
@@ -42,6 +43,9 @@ class ViewModelFactory(
 
             modelClass.isAssignableFrom(FavouritesViewModel::class.java) ->
                 FavouritesViewModel(favouriteRepository, sessionManager) as T
+
+            modelClass.isAssignableFrom(SettingsViewModel::class.java) ->
+                SettingsViewModel(userRepository, sessionManager) as T
 
             else -> throw IllegalArgumentException(
                 "Unknown ViewModel class: ${modelClass.name}"

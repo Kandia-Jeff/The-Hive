@@ -1,7 +1,5 @@
 package com.example.thehive.ui.detail
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -17,7 +15,6 @@ import com.example.thehive.ui.common.showMessage
 import com.example.thehive.viewmodel.DetailViewModel
 import com.example.thehive.viewmodel.UiState
 import com.example.thehive.viewmodel.ViewModelFactory
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 
 class DetailFragment : Fragment(R.layout.fragment_detail) {
@@ -98,31 +95,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     }
 
     private fun showContactSheet(listing: ListingEntity) {
-        val options = arrayOf("Call (${listing.contactPhone})", "Email (${listing.contactEmail})")
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Contact Landlord")
-            .setItems(options) { _, which ->
-                when (which) {
-                    0 -> {
-                        val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${listing.contactPhone}"))
-                        try {
-                            startActivity(intent)
-                        } catch (e: Exception) {
-                            showMessage("Unable to make phone call")
-                        }
-                    }
-                    1 -> {
-                        val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:${listing.contactEmail}"))
-                        intent.putExtra(Intent.EXTRA_SUBJECT, "Inquiry about ${listing.title}")
-                        try {
-                            startActivity(intent)
-                        } catch (e: Exception) {
-                            showMessage("No email client found")
-                        }
-                    }
-                }
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
+        val senderName = viewModel.currentUserState.value?.fullName
+        ContactBottomSheet.newInstance(
+            title = listing.title,
+            location = listing.location,
+            email = listing.contactEmail,
+            phone = listing.contactPhone,
+            senderName = senderName
+        ).show(childFragmentManager, ContactBottomSheet.TAG)
     }
 }
